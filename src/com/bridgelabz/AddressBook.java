@@ -1,12 +1,12 @@
 package com.bridgelabz;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class AddressBook {
 
     ArrayList<Contact> contacts = new ArrayList<>();
-    //Contact contactPerson;
     public void getData() {
         Contact contactPerson = new Contact();
         Scanner scanner = new Scanner(System.in);
@@ -33,24 +33,13 @@ public class AddressBook {
         contactPerson.setEmail(email);
         contacts.add(contactPerson);
     }
-    /*@Override
-    public String toString() {
-        return "AddressBook{" +
-                "contact=" + contactPerson +
-                '}';
-    }*/
 
-    @Override
-    public String toString() {
-        return "AddressBook{" +
-                "contacts=" + contacts +
-                '}';
-    }
-
-    public void edit(String name) {
+    public boolean edit(String name) {
+        boolean isFound = false;
         for (int i = 0; i < contacts.size(); i++) {
             Scanner scanner = new Scanner(System.in);
             if (contacts.get(i).getFirstName().equals(name)) {
+                isFound = true;
                 System.out.println("Enter Person First Name : ");
                 String firstName = scanner.next();
                 contacts.get(i).setFirstName(firstName);
@@ -75,5 +64,24 @@ public class AddressBook {
                 break;
             }
         }
+        return isFound;
+    }
+
+    public boolean delete(String name) {
+        boolean isFound = false;
+        for (int i = 0; i < contacts.size(); i++) {
+            if (contacts.get(i).getFirstName().equals(name)) {
+                isFound = true;
+                contacts.remove(i);
+            }
+        }
+        return isFound;
+    }
+
+    @Override
+    public String toString() {
+        return "AddressBook{" +
+                "contacts=" + contacts +
+                '}';
     }
 }
