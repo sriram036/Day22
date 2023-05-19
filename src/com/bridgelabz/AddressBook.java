@@ -1,18 +1,14 @@
 package com.bridgelabz;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AddressBook {
-    Contact contactPerson = new Contact();
 
-    @Override
-    public String toString() {
-        return "AddressBook{" +
-                "contact=" + contactPerson +
-                '}';
-    }
-
+    ArrayList<Contact> contacts = new ArrayList<>();
+    //Contact contactPerson;
     public void getData() {
+        Contact contactPerson = new Contact();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Person First Name : ");
         String firstName = scanner.next();
@@ -35,5 +31,19 @@ public class AddressBook {
         System.out.println("Enter person Email ID : ");
         String email = scanner.next();
         contactPerson.setEmail(email);
+        contacts.add(contactPerson);
+    }
+    /*@Override
+    public String toString() {
+        return "AddressBook{" +
+                "contact=" + contactPerson +
+                '}';
+    }*/
+
+    @Override
+    public String toString() {
+        return "AddressBook{" +
+                "contacts=" + contacts +
+                '}';
     }
 }
